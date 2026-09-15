@@ -1,5 +1,0 @@
-fastapi==0.141.1 
-httpx==0.28.1
-lark-oapi==1.7.1
-python-dotenv==1.2.2
-uvicorn==0.49.0

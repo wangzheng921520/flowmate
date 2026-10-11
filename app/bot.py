@@ -1,6 +1,7 @@
 import asyncio
 import os
 import re
+from datetime import datetime, timezone, timedelta
 from typing import Dict
 
 import httpx
@@ -65,11 +66,21 @@ async def call_dify(
         ""
     )
 
+    beijing_tz = timezone(
+        timedelta(hours=8)
+    )
+
+    current_datetime = datetime.now(
+        beijing_tz
+    ).strftime(
+        "%Y-%m-%d %H:%M:%S"
+    )
 
     payload = {
 
         "inputs": {
-            "feishu_user_id": user_id
+            "feishu_user_id": user_id,
+            "current_datetime": current_datetime
         },
 
         "query": query,
@@ -101,6 +112,10 @@ async def call_dify(
 
 
     print("==========调用Dify==========")
+    print(
+        "当前北京时间:",
+        current_datetime
+    )
     print(payload)
 
 
